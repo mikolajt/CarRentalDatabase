@@ -1,0 +1,57 @@
+﻿@model CarRental.Models.Wypozyczalnie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Wypozyczalnie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDWypozyczalni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDWypozyczalni)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Adres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KodPocztowy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KodPocztowy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miasto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miasto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Panstwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Panstwo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDWypozyczalni }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

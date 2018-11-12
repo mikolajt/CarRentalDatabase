@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CarRental.Models.Wypozyczalnie>
+
+@{
+    ViewBag.Title = "Spis Wypożyczalni";
+}
+
+<h2>Spis Wypożyczalni</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Adres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KodPocztowy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Miasto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Panstwo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KodPocztowy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Miasto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Panstwo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDWypozyczalni }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDWypozyczalni }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDWypozyczalni })
+        </td>
+    </tr>
+}
+
+</table>
