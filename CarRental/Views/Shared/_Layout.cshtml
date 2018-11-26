@@ -16,11 +16,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Sieć wypożyczalni samochodów", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Klienci", "Index", "Kliencis")</li>
+                    <li>@Html.ActionLink("Samochody", "Index", "Samochodies")</li>
+                    <li>@Html.ActionLink("Wypozyczenia", "Index", "Wypozyczenias")</li>
+                    <li>@Html.ActionLink("Ubezpieczenia", "Index", "Ubezpieczenias")</li>
+                    <li>@Html.ActionLink("UbezpieczeniaWypozyczenia", "Index", "UbezpieczeniaWypozyczenies")</li>
+                    <li>@Html.ActionLink("Przeglady", "Index", "Przegladies")</li>
+                    <li>@Html.ActionLink("Marki", "Index", "Markis")</li>
+                    <li>@Html.ActionLink("Pracownicy", "Index", "Pracownicies")</li>
                     <li>@Html.ActionLink("Wypozyczalnie", "Index", "Wypozyczalnies")</li>
                 </ul>
             </div>

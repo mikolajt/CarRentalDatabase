@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CarRental.Models.Wypozyczenia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DataWypozyczenia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataZwrotu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataFaktycznegoZwrotu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kilometry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Klienci.NazwaFirmy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pracownicy.Imie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Samochody.NrRejestracyjny)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataWypozyczenia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataZwrotu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataFaktycznegoZwrotu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kilometry)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Klienci.NazwaFirmy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pracownicy.Imie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Samochody.NrRejestracyjny)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDWypozyczenia }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDWypozyczenia }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDWypozyczenia })
+        </td>
+    </tr>
+}
+
+</table>

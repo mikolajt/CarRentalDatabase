@@ -1,0 +1,42 @@
+﻿@model CarRental.Models.Przeglady
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Przeglady</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataPrzegladu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataPrzegladu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WaznoscPrzegladu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WaznoscPrzegladu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Samochody.NrRejestracyjny)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Samochody.NrRejestracyjny)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPrzegladu }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,34 @@
+﻿@model CarRental.Models.Ubezpieczenia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ubezpieczenia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NazwaUbezpieczenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NazwaUbezpieczenia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WartoscUbezpieczenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WartoscUbezpieczenia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDUbezpieczenia }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

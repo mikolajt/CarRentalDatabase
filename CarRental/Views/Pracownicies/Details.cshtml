@@ -1,0 +1,66 @@
+﻿@model CarRental.Models.Pracownicy
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pracownicy</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nazwisko)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nazwisko)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Etat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Etat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NrTelefonu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NrTelefonu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZatrudnionyOd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZatrudnionyOd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZatrudnionyDo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZatrudnionyDo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPracownika }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -157,7 +157,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KliencisController.cs" />
+    <Compile Include="Controllers\MarkisController.cs" />
+    <Compile Include="Controllers\PracowniciesController.cs" />
+    <Compile Include="Controllers\PrzegladiesController.cs" />
+    <Compile Include="Controllers\SamochodiesController.cs" />
+    <Compile Include="Controllers\UbezpieczeniasController.cs" />
+    <Compile Include="Controllers\UbezpieczeniaWypozyczeniesController.cs" />
     <Compile Include="Controllers\WypozyczalniesController.cs" />
+    <Compile Include="Controllers\WypozyczeniasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -264,6 +272,46 @@
     <Content Include="Views\Wypozyczalnies\Details.cshtml" />
     <Content Include="Views\Wypozyczalnies\Edit.cshtml" />
     <Content Include="Views\Wypozyczalnies\Index.cshtml" />
+    <Content Include="Views\Kliencis\Create.cshtml" />
+    <Content Include="Views\Kliencis\Delete.cshtml" />
+    <Content Include="Views\Kliencis\Details.cshtml" />
+    <Content Include="Views\Kliencis\Edit.cshtml" />
+    <Content Include="Views\Kliencis\Index.cshtml" />
+    <Content Include="Views\Markis\Create.cshtml" />
+    <Content Include="Views\Markis\Delete.cshtml" />
+    <Content Include="Views\Markis\Details.cshtml" />
+    <Content Include="Views\Markis\Edit.cshtml" />
+    <Content Include="Views\Markis\Index.cshtml" />
+    <Content Include="Views\Pracownicies\Create.cshtml" />
+    <Content Include="Views\Pracownicies\Delete.cshtml" />
+    <Content Include="Views\Pracownicies\Details.cshtml" />
+    <Content Include="Views\Pracownicies\Edit.cshtml" />
+    <Content Include="Views\Pracownicies\Index.cshtml" />
+    <Content Include="Views\Przegladies\Create.cshtml" />
+    <Content Include="Views\Przegladies\Delete.cshtml" />
+    <Content Include="Views\Przegladies\Details.cshtml" />
+    <Content Include="Views\Przegladies\Edit.cshtml" />
+    <Content Include="Views\Przegladies\Index.cshtml" />
+    <Content Include="Views\Samochodies\Create.cshtml" />
+    <Content Include="Views\Samochodies\Delete.cshtml" />
+    <Content Include="Views\Samochodies\Details.cshtml" />
+    <Content Include="Views\Samochodies\Edit.cshtml" />
+    <Content Include="Views\Samochodies\Index.cshtml" />
+    <Content Include="Views\Ubezpieczenias\Create.cshtml" />
+    <Content Include="Views\Ubezpieczenias\Delete.cshtml" />
+    <Content Include="Views\Ubezpieczenias\Details.cshtml" />
+    <Content Include="Views\Ubezpieczenias\Edit.cshtml" />
+    <Content Include="Views\Ubezpieczenias\Index.cshtml" />
+    <Content Include="Views\UbezpieczeniaWypozyczenies\Create.cshtml" />
+    <Content Include="Views\UbezpieczeniaWypozyczenies\Delete.cshtml" />
+    <Content Include="Views\UbezpieczeniaWypozyczenies\Details.cshtml" />
+    <Content Include="Views\UbezpieczeniaWypozyczenies\Edit.cshtml" />
+    <Content Include="Views\UbezpieczeniaWypozyczenies\Index.cshtml" />
+    <Content Include="Views\Wypozyczenias\Create.cshtml" />
+    <Content Include="Views\Wypozyczenias\Delete.cshtml" />
+    <Content Include="Views\Wypozyczenias\Details.cshtml" />
+    <Content Include="Views\Wypozyczenias\Edit.cshtml" />
+    <Content Include="Views\Wypozyczenias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

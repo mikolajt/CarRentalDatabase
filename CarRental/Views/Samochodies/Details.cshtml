@@ -1,0 +1,58 @@
+﻿@model CarRental.Models.Samochody
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Samochody</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Rocznik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rocznik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CenaZaDobe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CenaZaDobe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NrRejestracyjny)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NrRejestracyjny)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marki.Marka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marki.Marka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Wypozyczalnie.Adres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wypozyczalnie.Adres)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDSamochodu }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

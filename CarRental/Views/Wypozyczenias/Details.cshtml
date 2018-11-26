@@ -1,0 +1,74 @@
+﻿@model CarRental.Models.Wypozyczenia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Wypozyczenia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataWypozyczenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataWypozyczenia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataZwrotu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataZwrotu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFaktycznegoZwrotu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFaktycznegoZwrotu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kilometry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kilometry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Klienci.NazwaFirmy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Klienci.NazwaFirmy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pracownicy.Imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pracownicy.Imie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Samochody.NrRejestracyjny)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Samochody.NrRejestracyjny)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDWypozyczenia }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

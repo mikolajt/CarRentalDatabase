@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CarRental.Models.Przeglady>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DataPrzegladu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WaznoscPrzegladu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Samochody.NrRejestracyjny)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataPrzegladu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WaznoscPrzegladu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Samochody.NrRejestracyjny)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDPrzegladu }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDPrzegladu }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDPrzegladu })
+        </td>
+    </tr>
+}
+
+</table>
