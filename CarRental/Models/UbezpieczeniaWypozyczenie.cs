@@ -11,11 +11,17 @@ namespace CarRental.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class UbezpieczeniaWypozyczenie
     {
+        [Required(ErrorMessage = "Numer polisy nie mo¿e byæ pusty")]
         public string NrPolisy { get; set; }
+
+        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
         public int IDWypozyczenia { get; set; }
+
+        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
         public int IDUbezpieczenia { get; set; }
     
         public virtual Ubezpieczenia Ubezpieczenia { get; set; }

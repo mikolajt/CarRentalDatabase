@@ -39,8 +39,8 @@ namespace CarRental.Controllers
         // GET: Samochodies/Create
         public ActionResult Create()
         {
-            ViewBag.IDMarki = new SelectList(db.Marki, "IDMarki", "Marka");
-            ViewBag.IDWypozyczalni = new SelectList(db.Wypozyczalnie, "IDWypozyczalni", "Adres");
+            ViewBag.IDMarki = new SelectList(db.Marki, "IDMarki", "IDMarki");
+            ViewBag.IDWypozyczalni = new SelectList(db.Wypozyczalnie, "IDWypozyczalni", "IDWypozyczalni");
             return View();
         }
 
@@ -59,6 +59,8 @@ namespace CarRental.Controllers
                 }
                 catch (Exception) {
                     ViewBag.Exception = "Wprowadzono niepoprawne dane";
+                    ViewBag.IDMarki = new SelectList(db.Marki, "IDMarki", "Marka", samochody.IDMarki);
+                    ViewBag.IDWypozyczalni = new SelectList(db.Wypozyczalnie, "IDWypozyczalni", "Adres", samochody.IDWypozyczalni);
                     return View(samochody);
                 }
                 return RedirectToAction("Index");
@@ -81,8 +83,8 @@ namespace CarRental.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDMarki = new SelectList(db.Marki, "IDMarki", "Marka", samochody.IDMarki);
-            ViewBag.IDWypozyczalni = new SelectList(db.Wypozyczalnie, "IDWypozyczalni", "Adres", samochody.IDWypozyczalni);
+            ViewBag.IDMarki = new SelectList(db.Marki, "IDMarki", "IDMarki", samochody.IDMarki);
+            ViewBag.IDWypozyczalni = new SelectList(db.Wypozyczalnie, "IDWypozyczalni", "IDWypozyczalni", samochody.IDWypozyczalni);
             return View(samochody);
         }
 
@@ -101,6 +103,8 @@ namespace CarRental.Controllers
                 }
                 catch (Exception) {
                     ViewBag.Exception = "Wprowadzono niepoprawne dane";
+                    ViewBag.IDMarki = new SelectList(db.Marki, "IDMarki", "Marka", samochody.IDMarki);
+                    ViewBag.IDWypozyczalni = new SelectList(db.Wypozyczalnie, "IDWypozyczalni", "Adres", samochody.IDWypozyczalni);
                     return View(samochody);
                 }
                 return RedirectToAction("Index");

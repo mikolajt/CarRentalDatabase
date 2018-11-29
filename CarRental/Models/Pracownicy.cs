@@ -11,7 +11,8 @@ namespace CarRental.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Pracownicy
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +20,33 @@ namespace CarRental.Models
         {
             this.Wypozyczenia = new HashSet<Wypozyczenia>();
         }
-    
+
+        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
         public int IDPracownika { get; set; }
+
+        [Required(ErrorMessage = "Imiê nie mo¿e byæ puste")]
+        [MinLength(2, ErrorMessage = "Minimalna d³ugoœæ imienia wynosi 2 znaki")]
+        [MaxLength(250, ErrorMessage = "Maksymalna d³ugoœæ imienia wynosi 250 znaków")]
         public string Imie { get; set; }
+
+
+        [Required(ErrorMessage = "Nazwisko nie mo¿e byæ puste")]
+        [MinLength(3, ErrorMessage = "Minimalna d³ugoœæ nazwiska wynosi 3 znaki")]
+        [MaxLength(250, ErrorMessage = "Maksymalna d³ugoœæ nazwiska wynosi 250 znaków")]
         public string Nazwisko { get; set; }
+
+        [Required(ErrorMessage = "Etat nie mo¿e byæ pusty")]
         public double Etat { get; set; }
+
         public Nullable<int> NrTelefonu { get; set; }
+
+        [Required(ErrorMessage = "Data zatrudnienia nie mo¿e byæ pusta")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
+        [DataType(DataType.Date, ErrorMessage = "Podaj prawid³ow¹ datê")]
         public System.DateTime ZatrudnionyOd { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
+        [DataType(DataType.Date, ErrorMessage = "Podaj prawid³ow¹ datê")]
         public Nullable<System.DateTime> ZatrudnionyDo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

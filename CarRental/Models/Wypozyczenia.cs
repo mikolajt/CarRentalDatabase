@@ -11,7 +11,8 @@ namespace CarRental.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Wypozyczenia
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,14 +20,32 @@ namespace CarRental.Models
         {
             this.UbezpieczeniaWypozyczenie = new HashSet<UbezpieczeniaWypozyczenie>();
         }
-    
+
+        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
         public int IDWypozyczenia { get; set; }
+
+        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
         public int IDPracownika { get; set; }
+
+        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
         public int IDSamochodu { get; set; }
+
+        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
         public int IDKlienta { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
+        [DataType(DataType.Date, ErrorMessage = "Podaj prawid³ow¹ datê")]
         public System.DateTime DataWypozyczenia { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
+        [DataType(DataType.Date, ErrorMessage = "Podaj prawid³ow¹ datê")]
         public System.DateTime DataZwrotu { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
+        [DataType(DataType.Date, ErrorMessage = "Podaj prawid³ow¹ datê")]
         public Nullable<System.DateTime> DataFaktycznegoZwrotu { get; set; }
+
+        [Required(ErrorMessage = "Kilometry nie mog¹ byæ puste")]
         public Nullable<int> Kilometry { get; set; }
     
         public virtual Klienci Klienci { get; set; }

@@ -39,7 +39,7 @@ namespace CarRental.Controllers
         // GET: Przegladies/Create
         public ActionResult Create()
         {
-            ViewBag.IDSamochodu = new SelectList(db.Samochody, "IDSamochodu", "NrRejestracyjny");
+            ViewBag.IDSamochodu = new SelectList(db.Samochody, "IDSamochodu", "IDSamochodu");
             return View();
         }
 
@@ -58,6 +58,7 @@ namespace CarRental.Controllers
                 }
                 catch (Exception) {
                     ViewBag.Exception = "Wprowadzono niepoprawne dane";
+                    ViewBag.IDSamochodu = new SelectList(db.Samochody, "IDSamochodu", "NrRejestracyjny", przeglady.IDSamochodu);
                     return View(przeglady);
                 }
                 return RedirectToAction("Index");
@@ -79,7 +80,7 @@ namespace CarRental.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDSamochodu = new SelectList(db.Samochody, "IDSamochodu", "NrRejestracyjny", przeglady.IDSamochodu);
+            ViewBag.IDSamochodu = new SelectList(db.Samochody, "IDSamochodu", "IDSamochodu", przeglady.IDSamochodu);
             return View(przeglady);
         }
 
@@ -98,6 +99,7 @@ namespace CarRental.Controllers
                 }
                 catch (Exception) {
                     ViewBag.Exception = "Wprowadzono niepoprawne dane";
+                    ViewBag.IDSamochodu = new SelectList(db.Samochody, "IDSamochodu", "NrRejestracyjny", przeglady.IDSamochodu);
                     return View(przeglady);
                 }
                 return RedirectToAction("Index");

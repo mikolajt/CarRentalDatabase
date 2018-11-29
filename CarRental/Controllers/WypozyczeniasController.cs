@@ -39,9 +39,9 @@ namespace CarRental.Controllers
         // GET: Wypozyczenias/Create
         public ActionResult Create()
         {
-            ViewBag.IDKlienta = new SelectList(db.Klienci, "IDKlienta", "NazwaFirmy");
-            ViewBag.IDPracownika = new SelectList(db.Pracownicy, "IDPracownika", "Imie");
-            ViewBag.IDSamochodu = new SelectList(db.Samochody, "IDSamochodu", "NrRejestracyjny");
+            ViewBag.IDKlienta = new SelectList(db.Klienci, "IDKlienta", "IDKlienta");
+            ViewBag.IDPracownika = new SelectList(db.Pracownicy, "IDPracownika", "IDPracownika");
+            ViewBag.IDSamochodu = new SelectList(db.Samochody, "IDSamochodu", "IDSamochodu");
             return View();
         }
 
@@ -60,6 +60,9 @@ namespace CarRental.Controllers
                 }
                 catch (Exception) {
                     ViewBag.Exception = "Wprowadzono niepoprawne dane";
+                    ViewBag.IDKlienta = new SelectList(db.Klienci, "IDKlienta", "NazwaFirmy", wypozyczenia.IDKlienta);
+                    ViewBag.IDPracownika = new SelectList(db.Pracownicy, "IDPracownika", "Imie", wypozyczenia.IDPracownika);
+                    ViewBag.IDSamochodu = new SelectList(db.Samochody, "IDSamochodu", "NrRejestracyjny", wypozyczenia.IDSamochodu);
                     return View(wypozyczenia);
                 }
                 return RedirectToAction("Index");
@@ -83,9 +86,9 @@ namespace CarRental.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDKlienta = new SelectList(db.Klienci, "IDKlienta", "NazwaFirmy", wypozyczenia.IDKlienta);
-            ViewBag.IDPracownika = new SelectList(db.Pracownicy, "IDPracownika", "Imie", wypozyczenia.IDPracownika);
-            ViewBag.IDSamochodu = new SelectList(db.Samochody, "IDSamochodu", "NrRejestracyjny", wypozyczenia.IDSamochodu);
+            ViewBag.IDKlienta = new SelectList(db.Klienci, "IDKlienta", "IDKlienta", wypozyczenia.IDKlienta);
+            ViewBag.IDPracownika = new SelectList(db.Pracownicy, "IDPracownika", "IDPracownika", wypozyczenia.IDPracownika);
+            ViewBag.IDSamochodu = new SelectList(db.Samochody, "IDSamochodu", "IDSamochodu", wypozyczenia.IDSamochodu);
             return View(wypozyczenia);
         }
 
@@ -104,6 +107,9 @@ namespace CarRental.Controllers
                 }
                 catch (Exception) {
                     ViewBag.Exception = "Wprowadzono niepoprawne dane";
+                    ViewBag.IDKlienta = new SelectList(db.Klienci, "IDKlienta", "NazwaFirmy", wypozyczenia.IDKlienta);
+                    ViewBag.IDPracownika = new SelectList(db.Pracownicy, "IDPracownika", "Imie", wypozyczenia.IDPracownika);
+                    ViewBag.IDSamochodu = new SelectList(db.Samochody, "IDSamochodu", "NrRejestracyjny", wypozyczenia.IDSamochodu);
                     return View(wypozyczenia);
                 }
                 return RedirectToAction("Index");

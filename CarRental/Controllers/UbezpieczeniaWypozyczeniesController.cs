@@ -59,6 +59,8 @@ namespace CarRental.Controllers
                 }
                 catch (Exception) {
                     ViewBag.Exception = "Wprowadzono niepoprawne dane";
+                    ViewBag.IDUbezpieczenia = new SelectList(db.Ubezpieczenia, "IDUbezpieczenia", "NazwaUbezpieczenia", ubezpieczeniaWypozyczenie.IDUbezpieczenia);
+                    ViewBag.IDWypozyczenia = new SelectList(db.Wypozyczenia, "IDWypozyczenia", "IDWypozyczenia", ubezpieczeniaWypozyczenie.IDWypozyczenia);
                     return View(ubezpieczeniaWypozyczenie);
                 }
                 return RedirectToAction("Index");
@@ -101,6 +103,8 @@ namespace CarRental.Controllers
                 }
                 catch (Exception) {
                     ViewBag.Exception = "Wprowadzono niepoprawne dane";
+                    ViewBag.IDUbezpieczenia = new SelectList(db.Ubezpieczenia, "IDUbezpieczenia", "NazwaUbezpieczenia", ubezpieczeniaWypozyczenie.IDUbezpieczenia);
+                    ViewBag.IDWypozyczenia = new SelectList(db.Wypozyczenia, "IDWypozyczenia", "IDWypozyczenia", ubezpieczeniaWypozyczenie.IDWypozyczenia);
                     return View(ubezpieczeniaWypozyczenie);
                 }
                 return RedirectToAction("Index");

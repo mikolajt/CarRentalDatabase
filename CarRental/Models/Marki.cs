@@ -11,7 +11,8 @@ namespace CarRental.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Marki
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,9 +20,18 @@ namespace CarRental.Models
         {
             this.Samochody = new HashSet<Samochody>();
         }
-    
+
+        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
         public int IDMarki { get; set; }
+
+        [Required(ErrorMessage = "Marka nie mo¿e byæ pusta")]
+        [MinLength(2, ErrorMessage = "Minimalna d³ugoœæ marki wynosi 2 znaki")]
+        [MaxLength(250, ErrorMessage = "Maksymalna d³ugoœæ marki wynosi 250 znaków")]
         public string Marka { get; set; }
+
+        [Required(ErrorMessage = "Model nie mo¿e byæ pusty")]
+        [MinLength(2, ErrorMessage = "Minimalna d³ugoœæ modelu wynosi 2 znaki")]
+        [MaxLength(250, ErrorMessage = "Maksymalna d³ugoœæ modelu wynosi 250 znaków")]
         public string Model { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

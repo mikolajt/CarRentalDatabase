@@ -11,12 +11,22 @@ namespace CarRental.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Przeglady
     {
+        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
         public int IDPrzegladu { get; set; }
+
+        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
         public int IDSamochodu { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
+        [DataType(DataType.Date, ErrorMessage = "Podaj prawid³ow¹ datê")]
         public System.DateTime DataPrzegladu { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
+        [DataType(DataType.Date, ErrorMessage = "Podaj prawid³ow¹ datê")]
         public System.DateTime WaznoscPrzegladu { get; set; }
     
         public virtual Samochody Samochody { get; set; }

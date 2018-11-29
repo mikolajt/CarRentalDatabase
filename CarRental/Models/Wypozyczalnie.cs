@@ -28,7 +28,7 @@ namespace CarRental.Models
         [MaxLength(250, ErrorMessage = "Maksymalna d³ugoœæ adresu wynosi 255 znaków")]
         public string Adres { get; set; }
         [Required(ErrorMessage = "Kod pocztowy nie mo¿e byæ pusty")]
-        [RegularExpression(@"0-9{5}", ErrorMessage ="Podaj prawid³owy kod pocztowy")]
+        [DataType(DataType.PostalCode, ErrorMessage = "Podaj prawid³owy kod pocztowy")]
         public string KodPocztowy { get; set; }
         [Required(ErrorMessage = "Miasto nie mo¿e byæ puste")]
         [MinLength(3, ErrorMessage = "Minimalna d³ugoœæ miasta wynosi 3 znaki")]
