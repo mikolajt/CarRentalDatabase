@@ -11,8 +11,7 @@ namespace CarRental.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Wypozyczalnie
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,23 +19,11 @@ namespace CarRental.Models
         {
             this.Samochody = new HashSet<Samochody>();
         }
-
-        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
+    
         public int IDWypozyczalni { get; set; }
-        [Required(ErrorMessage = "Adres nie mo¿e byæ pusty")]
-        [MinLength(3, ErrorMessage = "Minimalna d³ugoœæ adresu wynosi 3 znaki")]
-        [MaxLength(250, ErrorMessage = "Maksymalna d³ugoœæ adresu wynosi 255 znaków")]
         public string Adres { get; set; }
-        [Required(ErrorMessage = "Kod pocztowy nie mo¿e byæ pusty")]
-        [DataType(DataType.PostalCode, ErrorMessage = "Podaj prawid³owy kod pocztowy")]
         public string KodPocztowy { get; set; }
-        [Required(ErrorMessage = "Miasto nie mo¿e byæ puste")]
-        [MinLength(3, ErrorMessage = "Minimalna d³ugoœæ miasta wynosi 3 znaki")]
-        [MaxLength(250, ErrorMessage = "Maksymalna d³ugoœæ miasta wynosi 50 znaków")]
         public string Miasto { get; set; }
-        [Required(ErrorMessage = "Pañstwo nie mo¿e byæ puste")]
-        [MinLength(3, ErrorMessage = "Minimalna d³ugoœæ pañstwa wynosi 3 znaki")]
-        [MaxLength(250, ErrorMessage = "Maksymalna d³ugoœæ pañstwa wynosi 50 znaków")]
         public string Panstwo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -11,8 +11,7 @@ namespace CarRental.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Ubezpieczenia
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,16 +19,9 @@ namespace CarRental.Models
         {
             this.UbezpieczeniaWypozyczenie = new HashSet<UbezpieczeniaWypozyczenie>();
         }
-
-        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
+    
         public int IDUbezpieczenia { get; set; }
-
-        [Required(ErrorMessage = "Nazwa ubezpieczenia nie mo¿e byæ pusta")]
-        [MinLength(3, ErrorMessage = "Minimalna d³ugoœæ nazwy ubezpieczenia wynosi 3 znaki")]
-        [MaxLength(250, ErrorMessage = "Maksymalna d³ugoœæ nazwy ubezpieczenia wynosi 250 znaków")]
         public string NazwaUbezpieczenia { get; set; }
-
-        [Required(ErrorMessage = "Wartoœæ ubezpieczenia nie mo¿e byæ pusta")]
         public decimal WartoscUbezpieczenia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

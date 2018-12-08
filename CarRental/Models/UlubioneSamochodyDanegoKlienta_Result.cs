@@ -10,15 +10,14 @@
 namespace CarRental.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class UbezpieczeniaWypozyczenie
+    public partial class UlubioneSamochodyDanegoKlienta_Result
     {
-        public string NrPolisy { get; set; }
-        public int IDWypozyczenia { get; set; }
-        public int IDUbezpieczenia { get; set; }
-    
-        public virtual Ubezpieczenia Ubezpieczenia { get; set; }
-        public virtual Wypozyczenia Wypozyczenia { get; set; }
+        public Nullable<int> IDSamochodu { get; set; }
+        public Nullable<int> IDWypozyczalni { get; set; }
+        public Nullable<int> IDMarki { get; set; }
+        public Nullable<int> Rocznik { get; set; }
+        public Nullable<int> CenaZaDobe { get; set; }
+        public Nullable<int> NrRejestracyjny { get; set; }
     }
 }

@@ -11,8 +11,7 @@ namespace CarRental.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Samochody
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,26 +20,12 @@ namespace CarRental.Models
             this.Przeglady = new HashSet<Przeglady>();
             this.Wypozyczenia = new HashSet<Wypozyczenia>();
         }
-
-        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
+    
         public int IDSamochodu { get; set; }
-
-        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
         public int IDWypozyczalni { get; set; }
-
-        [Required(ErrorMessage = "Id nie mo¿e byæ puste")]
         public int IDMarki { get; set; }
-
-        [Required(ErrorMessage = "Rocznik nie mo¿e byæ pusty")]
         public Nullable<int> Rocznik { get; set; }
-
-        [Required(ErrorMessage = "Cena za dobê nie mo¿e byæ pusta")]
         public decimal CenaZaDobe { get; set; }
-
-
-        [Required(ErrorMessage = "Numer rejestracyjny nie mo¿e byæ pusty")]
-        [MinLength(3, ErrorMessage = "Minimalna d³ugoœæ numeru rejestracyjnego wynosi 3 znaki")]
-        [MaxLength(10, ErrorMessage = "Maksymalna d³ugoœæ numeru rejestracyjnego wynosi 10 znaków")]
         public string NrRejestracyjny { get; set; }
     
         public virtual Marki Marki { get; set; }

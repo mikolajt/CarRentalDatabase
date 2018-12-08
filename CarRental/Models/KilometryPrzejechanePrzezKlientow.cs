@@ -12,13 +12,9 @@ namespace CarRental.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UbezpieczeniaWypozyczenie
+    public partial class KilometryPrzejechanePrzezKlientow
     {
-        public string NrPolisy { get; set; }
-        public int IDWypozyczenia { get; set; }
-        public int IDUbezpieczenia { get; set; }
-    
-        public virtual Ubezpieczenia Ubezpieczenia { get; set; }
-        public virtual Wypozyczenia Wypozyczenia { get; set; }
+        public int IDKlienta { get; set; }
+        public Nullable<int> Suma_Kilometrów { get; set; }
     }
 }

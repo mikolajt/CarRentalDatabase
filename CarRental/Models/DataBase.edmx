@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CarRentalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CarRentalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Klienci">
           <Key>
             <PropertyRef Name="IDKlienta" />
@@ -19,6 +19,7 @@
           <Property Name="Panstwo" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="NrTelefonu" Type="int" />
           <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Marki">
           <Key>
@@ -98,6 +99,33 @@
           <Property Name="DataZwrotu" Type="datetime" Nullable="false" />
           <Property Name="DataFaktycznegoZwrotu" Type="datetime" />
           <Property Name="Kilometry" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CarRental.dbo.KilometryPrzejechanePrzezKlientow' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="KilometryPrzejechanePrzezKlientow">
+          <Key>
+            <PropertyRef Name="IDKlienta" />
+          </Key>
+          <Property Name="IDKlienta" Type="int" Nullable="false" />
+          <Property Name="Suma Kilometrów" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CarRental.dbo.ZestawienieNajpopularniejszychSamochodow' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ZestawienieNajpopularniejszychSamochodow">
+          <Key>
+            <PropertyRef Name="IDSamochodu" />
+          </Key>
+          <Property Name="IDSamochodu" Type="int" Nullable="false" />
+          <Property Name="Liczba wypożyczeń" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CarRental.dbo.ZestawienieStałychKlientów' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ZestawienieStałychKlientów">
+          <Key>
+            <PropertyRef Name="IDKlienta" />
+          </Key>
+          <Property Name="IDKlienta" Type="int" Nullable="false" />
+          <Property Name="Liczba wypożyczeń" Type="int" />
         </EntityType>
         <Association Name="FK__Przeglady__IDSam__32E0915F">
           <End Role="Samochody" Type="Self.Samochody" Multiplicity="1" />
@@ -195,6 +223,47 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="PrzychodyWDanymMiesiacu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="miesiac" Type="date" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="col" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="UlubioneSamochodyDanegoKlienta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDKlienta" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IDSamochodu" Type="int" />
+                <Property Name="IDWypozyczalni" Type="int" />
+                <Property Name="IDMarki" Type="int" />
+                <Property Name="Rocznik" Type="int" />
+                <Property Name="CenaZaDobe" Type="int" />
+                <Property Name="NrRejestracyjny" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="WynajmyDanegoKlienta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDKlienta" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IDWypozyczenia" Type="int" />
+                <Property Name="IDPracownika" Type="int" />
+                <Property Name="IDSamochodu" Type="int" />
+                <Property Name="DataWypozyczenia" Type="date" />
+                <Property Name="DataZwrotu" Type="date" />
+                <Property Name="DataFaktycznegoZwrotu" Type="date" />
+                <Property Name="Kilometry" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="CarRentalModelStoreContainer">
           <EntitySet Name="Klienci" EntityType="Self.Klienci" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Marki" EntityType="Self.Marki" Schema="dbo" store:Type="Tables" />
@@ -205,6 +274,24 @@
           <EntitySet Name="UbezpieczeniaWypozyczenie" EntityType="Self.UbezpieczeniaWypozyczenie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wypozyczalnie" EntityType="Self.Wypozyczalnie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wypozyczenia" EntityType="Self.Wypozyczenia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KilometryPrzejechanePrzezKlientow" EntityType="Self.KilometryPrzejechanePrzezKlientow" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [KilometryPrzejechanePrzezKlientow].[IDKlienta] AS [IDKlienta], 
+    [KilometryPrzejechanePrzezKlientow].[Suma Kilometrów] AS [Suma Kilometrów]
+    FROM [dbo].[KilometryPrzejechanePrzezKlientow] AS [KilometryPrzejechanePrzezKlientow]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ZestawienieNajpopularniejszychSamochodow" EntityType="Self.ZestawienieNajpopularniejszychSamochodow" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ZestawienieNajpopularniejszychSamochodow].[IDSamochodu] AS [IDSamochodu], 
+    [ZestawienieNajpopularniejszychSamochodow].[Liczba wypożyczeń] AS [Liczba wypożyczeń]
+    FROM [dbo].[ZestawienieNajpopularniejszychSamochodow] AS [ZestawienieNajpopularniejszychSamochodow]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ZestawienieStałychKlientów" EntityType="Self.ZestawienieStałychKlientów" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ZestawienieStałychKlientów].[IDKlienta] AS [IDKlienta], 
+    [ZestawienieStałychKlientów].[Liczba wypożyczeń] AS [Liczba wypożyczeń]
+    FROM [dbo].[ZestawienieStałychKlientów] AS [ZestawienieStałychKlientów]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__Przeglady__IDSam__32E0915F" Association="Self.FK__Przeglady__IDSam__32E0915F">
             <End Role="Samochody" EntitySet="Samochody" />
             <End Role="Przeglady" EntitySet="Przeglady" />
@@ -238,8 +325,7 @@
             <End Role="Wypozyczenia" EntitySet="Wypozyczenia" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CarRentalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -258,6 +344,7 @@
           <Property Name="NrTelefonu" Type="Int32" />
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Wypozyczenia" Relationship="Self.FK__Wypozycze__IDKli__3F466844" FromRole="Klienci" ToRole="Wypozyczenia" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" ConcurrencyMode="Fixed" />
         </EntityType>
         <EntityType Name="Marki">
           <Key>
@@ -491,7 +578,57 @@
             <End Role="Wypozyczenia" EntitySet="Wypozyczenia" />
             <End Role="UbezpieczeniaWypozyczenie" EntitySet="UbezpieczeniaWypozyczenie" />
           </AssociationSet>
+          <EntitySet Name="KilometryPrzejechanePrzezKlientow" EntityType="CarRentalModel.KilometryPrzejechanePrzezKlientow" />
+          <EntitySet Name="ZestawienieNajpopularniejszychSamochodow" EntityType="CarRentalModel.ZestawienieNajpopularniejszychSamochodow" />
+          <EntitySet Name="ZestawienieStałychKlientów" EntityType="CarRentalModel.ZestawienieStałychKlientów" />
+          <FunctionImport Name="PrzychodyWDanymMiesiacu" IsComposable="true" ReturnType="Collection(Int32)">
+          <Parameter Name="miesiac" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UlubioneSamochodyDanegoKlienta" IsComposable="true" ReturnType="Collection(CarRentalModel.UlubioneSamochodyDanegoKlienta_Result)">
+          <Parameter Name="IDKlienta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="WynajmyDanegoKlienta" IsComposable="true" ReturnType="Collection(CarRentalModel.WynajmyDanegoKlienta_Result)">
+          <Parameter Name="IDKlienta" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <EntityType Name="KilometryPrzejechanePrzezKlientow">
+          <Key>
+            <PropertyRef Name="IDKlienta" />
+          </Key>
+          <Property Name="IDKlienta" Type="Int32" Nullable="false" />
+          <Property Name="Suma_Kilometrów" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ZestawienieNajpopularniejszychSamochodow">
+          <Key>
+            <PropertyRef Name="IDSamochodu" />
+          </Key>
+          <Property Name="IDSamochodu" Type="Int32" Nullable="false" />
+          <Property Name="Liczba_wypożyczeń" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ZestawienieStałychKlientów">
+          <Key>
+            <PropertyRef Name="IDKlienta" />
+          </Key>
+          <Property Name="IDKlienta" Type="Int32" Nullable="false" />
+          <Property Name="Liczba_wypożyczeń" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="UlubioneSamochodyDanegoKlienta_Result">
+          <Property Type="Int32" Name="IDSamochodu" Nullable="true" />
+          <Property Type="Int32" Name="IDWypozyczalni" Nullable="true" />
+          <Property Type="Int32" Name="IDMarki" Nullable="true" />
+          <Property Type="Int32" Name="Rocznik" Nullable="true" />
+          <Property Type="Int32" Name="CenaZaDobe" Nullable="true" />
+          <Property Type="Int32" Name="NrRejestracyjny" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="WynajmyDanegoKlienta_Result">
+          <Property Type="Int32" Name="IDWypozyczenia" Nullable="true" />
+          <Property Type="Int32" Name="IDPracownika" Nullable="true" />
+          <Property Type="Int32" Name="IDSamochodu" Nullable="true" />
+          <Property Type="DateTime" Name="DataWypozyczenia" Nullable="true" Precision="10" />
+          <Property Type="DateTime" Name="DataZwrotu" Nullable="true" Precision="10" />
+          <Property Type="DateTime" Name="DataFaktycznegoZwrotu" Nullable="true" Precision="10" />
+          <Property Type="Int32" Name="Kilometry" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -501,6 +638,7 @@
           <EntitySetMapping Name="Klienci">
             <EntityTypeMapping TypeName="CarRentalModel.Klienci">
               <MappingFragment StoreEntitySet="Klienci">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="IDKlienta" ColumnName="IDKlienta" />
                 <ScalarProperty Name="NazwaFirmy" ColumnName="NazwaFirmy" />
                 <ScalarProperty Name="Imie" ColumnName="Imie" />
@@ -601,6 +739,56 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="KilometryPrzejechanePrzezKlientow">
+            <EntityTypeMapping TypeName="CarRentalModel.KilometryPrzejechanePrzezKlientow">
+              <MappingFragment StoreEntitySet="KilometryPrzejechanePrzezKlientow">
+                <ScalarProperty Name="Suma_Kilometrów" ColumnName="Suma Kilometrów" />
+                <ScalarProperty Name="IDKlienta" ColumnName="IDKlienta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZestawienieNajpopularniejszychSamochodow">
+            <EntityTypeMapping TypeName="CarRentalModel.ZestawienieNajpopularniejszychSamochodow">
+              <MappingFragment StoreEntitySet="ZestawienieNajpopularniejszychSamochodow">
+                <ScalarProperty Name="Liczba_wypożyczeń" ColumnName="Liczba wypożyczeń" />
+                <ScalarProperty Name="IDSamochodu" ColumnName="IDSamochodu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZestawienieStałychKlientów">
+            <EntityTypeMapping TypeName="CarRentalModel.ZestawienieStałychKlientów">
+              <MappingFragment StoreEntitySet="ZestawienieStałychKlientów">
+                <ScalarProperty Name="Liczba_wypożyczeń" ColumnName="Liczba wypożyczeń" />
+                <ScalarProperty Name="IDKlienta" ColumnName="IDKlienta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PrzychodyWDanymMiesiacu" FunctionName="CarRentalModel.Store.PrzychodyWDanymMiesiacu" />
+          <FunctionImportMapping FunctionImportName="UlubioneSamochodyDanegoKlienta" FunctionName="CarRentalModel.Store.UlubioneSamochodyDanegoKlienta">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CarRentalModel.UlubioneSamochodyDanegoKlienta_Result">
+                <ScalarProperty Name="IDSamochodu" ColumnName="IDSamochodu" />
+                <ScalarProperty Name="IDWypozyczalni" ColumnName="IDWypozyczalni" />
+                <ScalarProperty Name="IDMarki" ColumnName="IDMarki" />
+                <ScalarProperty Name="Rocznik" ColumnName="Rocznik" />
+                <ScalarProperty Name="CenaZaDobe" ColumnName="CenaZaDobe" />
+                <ScalarProperty Name="NrRejestracyjny" ColumnName="NrRejestracyjny" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="WynajmyDanegoKlienta" FunctionName="CarRentalModel.Store.WynajmyDanegoKlienta">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CarRentalModel.WynajmyDanegoKlienta_Result">
+                <ScalarProperty Name="IDWypozyczenia" ColumnName="IDWypozyczenia" />
+                <ScalarProperty Name="IDPracownika" ColumnName="IDPracownika" />
+                <ScalarProperty Name="IDSamochodu" ColumnName="IDSamochodu" />
+                <ScalarProperty Name="DataWypozyczenia" ColumnName="DataWypozyczenia" />
+                <ScalarProperty Name="DataZwrotu" ColumnName="DataZwrotu" />
+                <ScalarProperty Name="DataFaktycznegoZwrotu" ColumnName="DataFaktycznegoZwrotu" />
+                <ScalarProperty Name="Kilometry" ColumnName="Kilometry" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

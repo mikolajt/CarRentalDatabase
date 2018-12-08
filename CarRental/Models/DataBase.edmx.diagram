@@ -22,6 +22,9 @@
         <AssociationConnector Association="CarRentalModel.FK__Wypozycze__IDSam__3E52440B" ManuallyRouted="false" />
         <AssociationConnector Association="CarRentalModel.FK__Ubezpiecz__IDUbe__44FF419A" ManuallyRouted="false" />
         <AssociationConnector Association="CarRentalModel.FK__Ubezpiecz__IDWyp__440B1D61" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CarRentalModel.KilometryPrzejechanePrzezKlientow" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="CarRentalModel.ZestawienieNajpopularniejszychSamochodow" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="CarRentalModel.ZestawienieStałychKlientów" Width="1.5" PointX="8.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

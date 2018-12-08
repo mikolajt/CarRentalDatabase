@@ -12,6 +12,8 @@ namespace CarRental.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class CarRentalEntities : DbContext
     {
@@ -34,5 +36,38 @@ namespace CarRental.Models
         public virtual DbSet<UbezpieczeniaWypozyczenie> UbezpieczeniaWypozyczenie { get; set; }
         public virtual DbSet<Wypozyczalnie> Wypozyczalnie { get; set; }
         public virtual DbSet<Wypozyczenia> Wypozyczenia { get; set; }
+        public virtual DbSet<KilometryPrzejechanePrzezKlientow> KilometryPrzejechanePrzezKlientow { get; set; }
+        public virtual DbSet<ZestawienieNajpopularniejszychSamochodow> ZestawienieNajpopularniejszychSamochodow { get; set; }
+        public virtual DbSet<ZestawienieStałychKlientów> ZestawienieStałychKlientów { get; set; }
+    
+        [DbFunction("CarRentalEntities", "PrzychodyWDanymMiesiacu")]
+        public virtual IQueryable<Nullable<int>> PrzychodyWDanymMiesiacu(Nullable<System.DateTime> miesiac)
+        {
+            var miesiacParameter = miesiac.HasValue ?
+                new ObjectParameter("miesiac", miesiac) :
+                new ObjectParameter("miesiac", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Nullable<int>>("[CarRentalEntities].[PrzychodyWDanymMiesiacu](@miesiac)", miesiacParameter);
+        }
+    
+        [DbFunction("CarRentalEntities", "UlubioneSamochodyDanegoKlienta")]
+        public virtual IQueryable<UlubioneSamochodyDanegoKlienta_Result> UlubioneSamochodyDanegoKlienta(Nullable<int> iDKlienta)
+        {
+            var iDKlientaParameter = iDKlienta.HasValue ?
+                new ObjectParameter("IDKlienta", iDKlienta) :
+                new ObjectParameter("IDKlienta", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<UlubioneSamochodyDanegoKlienta_Result>("[CarRentalEntities].[UlubioneSamochodyDanegoKlienta](@IDKlienta)", iDKlientaParameter);
+        }
+    
+        [DbFunction("CarRentalEntities", "WynajmyDanegoKlienta")]
+        public virtual IQueryable<WynajmyDanegoKlienta_Result> WynajmyDanegoKlienta(Nullable<int> iDKlienta)
+        {
+            var iDKlientaParameter = iDKlienta.HasValue ?
+                new ObjectParameter("IDKlienta", iDKlienta) :
+                new ObjectParameter("IDKlienta", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<WynajmyDanegoKlienta_Result>("[CarRentalEntities].[WynajmyDanegoKlienta](@IDKlienta)", iDKlientaParameter);
+        }
     }
 }
